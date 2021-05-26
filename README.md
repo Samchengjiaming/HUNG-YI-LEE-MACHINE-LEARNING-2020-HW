@@ -13,6 +13,8 @@ we assume the function set as follow:
 3.***y=b+W<sub>1</sub>X+W<sub>2</sub>X<sup>2</sup>+W<sub>3</sub>X<sup>3</sup>.***<br/>
 the Y represents the predicted value of PM2.5,X is the input feature,X<sub>i</sub><sup>j</sup>indicates the content of the i-th substance in the atmosphere at the t-th time.
 
+## <b>result</b>
+
 
 
 
