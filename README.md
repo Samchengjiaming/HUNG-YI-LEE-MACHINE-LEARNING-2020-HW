@@ -20,7 +20,7 @@ the Y represents the predicted value of PM2.5,X is the input feature,X<sub>i</su
 the model 1:
 ***y=b+W<sub>1</sub>X.***<br/>
 when the learning_rate=0.00001,empoch=1,error during training：
-
+![Image text](./hw1/img/linearModel_learningRate=00001_epoch=1.png)
 
 
 
