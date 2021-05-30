@@ -2,7 +2,7 @@
 '''
 @Time: 2021/5/27 2:57  
 @Author: samchengjiaming
-@File: linear model.py
+@File: linear model_1.py
 Software: PyCharm
 target: hw1
 '''
@@ -19,10 +19,6 @@ but this did not affect the results of our model training.
 '''
 
 train_data_set = pd.read_csv('../data/train.csv')
-test_data_set = pd.read_csv('../data/test.csv')
-
-x_test = test_data_set.iloc[:18, 2:]
-print(x_test)
 '''
 The following code block constructs the input feature X and y^.
 '''
@@ -41,6 +37,18 @@ for hour in range(0, all_X_df.shape[1] - 9):
     x = nine_hours_data.values.reshape((18 * 9, 1))
     x_batch_list.append(x)
 y_batch_list = y_batch_list[9:]
+
+'''
+The following code block constructs the test data.
+'''
+test_data_set = pd.read_csv('../data/test.csv')
+x_test_batch_list=list()
+print(int(test_data_set.shape[0] / 18))
+for day in range(int(test_data_set.shape[0] / 18)):
+    one_test_data = test_data_set.iloc[day * 18:day * 18 + 18, 2:]
+    one_test_data.columns = [i for i in range(day * 9, (day + 1) * 9)]
+    one_test_data.index = [i for i in range(0, 18)]
+    x_test_batch_list.append(one_test_data)
 
 '''
 Model 1:Linear equation
@@ -70,6 +78,20 @@ x_index=[i for i in range(len(train_error_list))]
 plt.plot(x_index, train_error_list, color='red', linewidth=2.0, linestyle='-')
 plt.ylabel('error of train')
 plt.xlabel('times of batch')
-plt.show()
-y_test = linear_equation_model_b + np.dot(linear_equation_model_W1, x_test.values.reshape(162, 1))
-print(y_test)
+plt.savefig('error')
+plt.close()
+
+'''
+forecast
+'''
+forecast_y_list=list()
+for x_test_data_batch in x_test_batch_list:
+    print(linear_equation_model_b[0] + np.dot(linear_equation_model_W1, x_test_data_batch.values.reshape(162,1))[0][0])
+    forecast_y_list.append(linear_equation_model_b[0] + np.dot(linear_equation_model_W1, x_test_data_batch.values.reshape(162,1))[0][0])
+
+x_index=[i for i in range(len(forecast_y_list))]
+plt.scatter(x_index, forecast_y_list,marker = '+', color='red', linewidth=2.0)
+plt.ylabel('forecast of linear model')
+plt.xlabel('index of batch')
+plt.savefig('forecast')
+

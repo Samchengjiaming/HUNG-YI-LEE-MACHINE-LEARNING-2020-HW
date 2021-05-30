@@ -10,21 +10,25 @@ In the context of the problem,the content of 18 substances in the atmosphere wil
 - Due to the problem of the data character encoding set, we changed all Chinese in the data to English, but this did not affect the results of our model training.
 - The'NR' in the data indicates that there was NO RAIN on this day. Considering that the features input to the model are all floating-point data,so we transform 'NR' to zero. 
 ### <b>Model</b>
-we assume the function set as follow:  
+we assume the model set as follow:  
 1.***y=b+W<sub>1</sub>X.***<br/>
 2.***y=b+W<sub>1</sub>X+W<sub>2</sub>X<sup>2</sup>.***<br/>
 3.***y=b+W<sub>1</sub>X+W<sub>2</sub>X<sup>2</sup>+W<sub>3</sub>X<sup>3</sup>.***<br/>
 the Y represents the predicted value of PM2.5,X is the input feature,X<sub>i</sub><sup>j</sup>indicates the content of the i-th substance in the atmosphere at the t-th time.
 
 ### <b>Result</b>
-the model 1:
+#### <b>the model 1:<b>
 ***y=b+W<sub>1</sub>X.***<br/>
-when the learning_rate=0.00001,empoch=1,error during training：
-![Image text](./hw1/img/linearModel_learningRate=00001_epoch=1.png)
+when the learning_rate=0.00001,epoch=1,error during training：  
+![error_img_01](./hw1/img/linearModel_learningRate=00001_epoch=1.png)  
+when the learning_rate=0.00001,epoch=5,error during training：  
+![error_img_02](./hw1/img/linearModel_learningRate=00001_epoch=5.png)  
+We substitute the test data into the model obtained by the second training method,
+The scatter plot of the predicted value is as follows:  
+![forecast_value](./hw1/img/forecast_value_of_model_1.png)  
+In the picture, it can be clearly seen that Model 1 has many shortcomings or even under-fitting  
 
-
-
-
+#### <b>the model 2:<b>
 
 
 
