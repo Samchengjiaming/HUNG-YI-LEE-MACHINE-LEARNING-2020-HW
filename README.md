@@ -17,6 +17,14 @@ we assume the function set as follow:
 the Y represents the predicted value of PM2.5,X is the input feature,X<sub>i</sub><sup>j</sup>indicates the content of the i-th substance in the atmosphere at the t-th time.
 
 ### <b>Result</b>
+the model 1:
+***y=b+W<sub>1</sub>X.***<br/>
+when the learning_rate=0.00001,empoch=1,error during training：
+
+
+
+
+
 
 
 
