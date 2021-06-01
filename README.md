@@ -2,5 +2,6 @@
 
 I intend to use Python & PyTorch to deal the homework,of course in the first two assignments,I will use numpy replace PyTorch.And I will explain my own thinking in the README for every assignment.
 
-- ***First assignment***¡¡¡¡[code&result](./hw1)
+- [x] [First assignment](./hw1)
+
 
