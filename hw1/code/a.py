@@ -10,7 +10,7 @@ target: 程序目标
 
 import numpy as np
 
-a=np.array([[1],[2],[3],[4]])
-b=np.array([[1,2,3,4]])
-a=a.reshape(1,4)
-print(a-b)
+a=np.array([[1]])
+b=np.array([[2]])
+
+print(a/b)

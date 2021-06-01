@@ -2,35 +2,5 @@
 
 I intend to use Python & PyTorch to deal the homework,of course in the first two assignments,I will use numpy replace PyTorch.And I will explain my own thinking in the README for every assignment.
 
-# ***First assignment***
-### <b>Description of the problem</b>
-[the link of assignment](https://docs.google.com/presentation/d/18MG1wSTTx8AentGnMfIRUp8ipo8bLpgAj16bJoqW-b0/edit#slide=id.g4cd6560e29_0_10) 
-In the context of the problem,the content of 18 substances in the atmosphere will affect the concentration of PM2.5.given,the content of these 18 substances in the atmosphere in the first eight hours,we need manual achieve linear regression to forecast the PM2.5 of next hour.<br>
-### <b>Data preprocessing</b>
-- Due to the problem of the data character encoding set, we changed all Chinese in the data to English, but this did not affect the results of our model training.
-- The'NR' in the data indicates that there was NO RAIN on this day. Considering that the features input to the model are all floating-point data,so we transform 'NR' to zero. 
-### <b>Model</b>
-we assume the model set as follow:  
-1.***y=b+W<sub>1</sub>X.***<br/>
-2.***y=b+W<sub>1</sub>X+W<sub>2</sub>X<sup>2</sup>.***<br/>
-3.***y=b+W<sub>1</sub>X+W<sub>2</sub>X<sup>2</sup>+W<sub>3</sub>X<sup>3</sup>.***<br/>
-the Y represents the predicted value of PM2.5,X is the input feature,X<sub>i</sub><sup>j</sup>indicates the content of the i-th substance in the atmosphere at the t-th time.
-
-### <b>Result</b>
-#### <b>the model 1:<b>
-***y=b+W<sub>1</sub>X.***<br/>
-when the learning_rate=0.00001,epoch=1,error during trainingï¼š  
-![error_img_01](./hw1/img/linearModel_learningRate=00001_epoch=1.png)  
-when the learning_rate=0.00001,epoch=5,error during trainingï¼š  
-![error_img_02](./hw1/img/linearModel_learningRate=00001_epoch=5.png)  
-We substitute the test data into the model obtained by the second training method,
-The scatter plot of the predicted value is as follows:  
-![forecast_value](./hw1/img/forecast_value_of_model_1.png)  
-In the picture, it can be clearly seen that Model 1 has many shortcomings or even under-fitting  
-
-#### <b>the model 2:<b>
-
-
-
-
+- ***First assignment***¡¡¡¡[code&result](./hw1)
 

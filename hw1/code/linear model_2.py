@@ -1,12 +1,11 @@
 # coding=utf-8
 '''
-@Time: 2021/5/27 2:57  
-@Author: samchengjiaming
-@File: linear model_1.py
+@Time: 2021/5/30 19:20  
+@Author: 多来B.梦
+@File: linear model_2.py
 Software: PyCharm
-target: hw1
+target: 程序目标
 '''
-
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -43,25 +42,28 @@ for x_batch in x_batch_list:
     x=np.concatenate((x,x_batch),axis=1)
 x=x[:,1:]
 
-'''
-Model 1:Linear equation
-'''
-#将常数项b当做参数w，只不过常熟b对应的x为1
-w=np.zeros([1,9*18+1])
-x=np.concatenate((x,np.ones([1,5751])),axis=0)
+
+w1=np.zeros([1,9*18+1])
+w2=np.zeros([1,9*18])
+x_1=np.concatenate((x,np.ones([1,5751])),axis=0)
+x_2=x**2
 epoch_nums=1000
 learning_rate=100
 esp=0.0001
-adagrad=np.zeros([9*18+1,1])
+adagrad_w1=np.zeros([9*18+1,1])
+adagrad_w2=np.zeros([9*18,1])
 loss_list=list()
 for epoch in range(epoch_nums):
-    loss=np.sqrt(np.sum(np.power((y_true-np.dot(w,x)),2))/5751)
+    loss=np.sqrt(np.sum(np.power((y_true-(np.dot(w1,x_1)+np.dot(w2,x_2))),2))/5751)
     if epoch%10==0:
         print('loss:',loss)
         loss_list.append(loss)
-    gradient=-2*np.dot(x,(y_true-np.dot(w,x)).transpose())
-    adagrad+=gradient**2
-    w=w-(learning_rate*gradient/np.sqrt(adagrad+esp)).reshape(1,163)
+    gradient_w1_b=-2*np.dot(x_1,(y_true-(np.dot(w1,x_1)+np.dot(w2,x_2))).transpose())
+    gradient_w2 =-2*np.dot(x_2,(y_true-(np.dot(w1,x_1)+np.dot(w2,x_2))).transpose())
+    adagrad_w1+=gradient_w1_b**2
+    adagrad_w2+=gradient_w2**2
+    w1=w1-(learning_rate*gradient_w1_b/np.sqrt(adagrad_w1+esp)).reshape(1,163)
+    w2=w2-(learning_rate*gradient_w2/np.sqrt(adagrad_w2+esp)).reshape(1,162)
 
 x_index=[i for i in range(len(loss_list))]
 plt.plot(x_index, loss_list, color='red', linewidth=2.0, linestyle='-')
